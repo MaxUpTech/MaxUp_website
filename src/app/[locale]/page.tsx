@@ -1,10 +1,23 @@
-import { useTranslations } from 'next-intl';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import ClientLogos from '@/components/ClientLogos';
+import ServicesGrid from '@/components/ServicesGrid';
+import PortfolioPreview from '@/components/PortfolioPreview';
+import AboutTeaser from '@/components/AboutTeaser';
+import CTABanner from '@/components/CTABanner';
+import Footer from '@/components/Footer';
 
 export default function HomePage() {
-  const t = useTranslations('hero');
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">{t('title1')}</h1>
-    </main>
+    <>
+      <Navbar />
+      <Hero />
+      <ClientLogos />
+      <ServicesGrid />
+      <PortfolioPreview />
+      <AboutTeaser />
+      <CTABanner />
+      <Footer />
+    </>
   );
 }

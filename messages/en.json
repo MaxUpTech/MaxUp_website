@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About Us",
+    "blog": "Blog",
+    "contact": "Contact Us",
+    "cta": "Start Your Project"
+  },
+  "hero": {
+    "badge": "Full-Service Digital Agency | Marketing . Development . Creative",
+    "title1": "We build your digital presence.",
+    "title2": "We deliver results.",
+    "description": "From web design to ad campaign management and creative content production — we provide everything your business needs to grow in the digital world.",
+    "ctaPrimary": "Book a Free Consultation",
+    "ctaSecondary": "View Our Work",
+    "statProjects": "Projects Completed",
+    "statYears": "Years of Experience",
+    "statSatisfaction": "Client Satisfaction"
+  },
+  "clients": {
+    "label": "Trusted by Leading Brands"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive digital solutions covering everything your business needs to stand out and grow",
+    "learnMore": "Learn More",
+    "webDev": "Web Design & Development",
+    "webDevDesc": "Modern, responsive websites optimized for search engines and user experience",
+    "marketing": "Digital Marketing",
+    "marketingDesc": "Google and Meta ad campaign management with continuous optimization for maximum ROI",
+    "content": "Content Creation",
+    "contentDesc": "Creative content that tells your brand story and engages your target audience",
+    "branding": "Brand Identity Design",
+    "brandingDesc": "Logos and complete visual identity that reflect your brand vision and set you apart from competitors",
+    "social": "Social Media Management",
+    "socialDesc": "Professional management of your social media accounts with a clear growth strategy",
+    "seo": "Search Engine Optimization",
+    "seoDesc": "Improve your site's search rankings to attract consistent, targeted organic traffic"
+  },
+  "portfolio": {
+    "title": "Our Work",
+    "subtitle": "Real projects, tangible results",
+    "all": "All",
+    "websites": "Websites",
+    "marketingFilter": "Marketing",
+    "brandingFilter": "Branding",
+    "contentFilter": "Content"
+  },
+  "about": {
+    "title": "Why MaxUp?",
+    "description": "We're not just a digital agency — we're your growth partner. We combine creativity and data to deliver solutions that drive real results.",
+    "cta": "Get to Know Us"
+  },
+  "cta": {
+    "title": "Ready to start your next project?",
+    "subtitle": "Book a free consultation and let's talk about how we can help you",
+    "button": "Contact Us Now"
+  },
+  "footer": {
+    "description": "A full-service digital agency helping businesses grow and excel in the digital world",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "contactTitle": "Contact Us",
+    "rights": "All Rights Reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

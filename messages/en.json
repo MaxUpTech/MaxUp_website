@@ -45,7 +45,8 @@
     "websites": "Websites",
     "marketingFilter": "Marketing",
     "brandingFilter": "Branding",
-    "contentFilter": "Content"
+    "contentFilter": "Content",
+    "viewAll": "View All Work"
   },
   "about": {
     "title": "Why MaxUp?",
@@ -73,37 +74,67 @@
       "webDev": {
         "title": "Web Design & Development",
         "description": "We build modern, responsive websites that look stunning on every device. Our sites are optimized for speed, SEO, and conversion — turning visitors into customers.",
-        "bullets": ["Custom responsive design for all devices", "SEO-optimized architecture", "Fast loading speeds & performance", "CMS integration & easy management"],
+        "bullets": [
+          "Custom responsive design for all devices",
+          "SEO-optimized architecture",
+          "Fast loading speeds & performance",
+          "CMS integration & easy management"
+        ],
         "cta": "Get a Website Quote"
       },
       "marketing": {
         "title": "Digital Marketing",
         "description": "Data-driven ad campaigns on Google, Meta, and TikTok. We manage your budget smartly and optimize continuously to deliver maximum return on investment.",
-        "bullets": ["Google Ads & Meta campaign management", "Continuous A/B testing & optimization", "Detailed analytics & monthly reports", "Retargeting & audience segmentation"],
+        "bullets": [
+          "Google Ads & Meta campaign management",
+          "Continuous A/B testing & optimization",
+          "Detailed analytics & monthly reports",
+          "Retargeting & audience segmentation"
+        ],
         "cta": "Launch a Campaign"
       },
       "content": {
         "title": "Content Creation",
         "description": "From video production to copywriting, we create compelling content that tells your brand story and resonates with your target audience across all platforms.",
-        "bullets": ["Professional video production", "Engaging copywriting & storytelling", "Photography & visual content", "Content strategy & planning"],
+        "bullets": [
+          "Professional video production",
+          "Engaging copywriting & storytelling",
+          "Photography & visual content",
+          "Content strategy & planning"
+        ],
         "cta": "Create Content"
       },
       "branding": {
         "title": "Brand Identity Design",
         "description": "Your brand is more than a logo. We craft complete visual identities that communicate your values, build trust, and make lasting impressions.",
-        "bullets": ["Logo design & brand marks", "Complete visual identity system", "Brand guidelines documentation", "Packaging & collateral design"],
+        "bullets": [
+          "Logo design & brand marks",
+          "Complete visual identity system",
+          "Brand guidelines documentation",
+          "Packaging & collateral design"
+        ],
         "cta": "Build Your Brand"
       },
       "social": {
         "title": "Social Media Management",
         "description": "We manage your social media presence with a clear strategy focused on growth, engagement, and community building across all major platforms.",
-        "bullets": ["Content calendar & scheduling", "Community management & engagement", "Growth strategy & follower acquisition", "Performance tracking & analytics"],
+        "bullets": [
+          "Content calendar & scheduling",
+          "Community management & engagement",
+          "Growth strategy & follower acquisition",
+          "Performance tracking & analytics"
+        ],
         "cta": "Grow Your Social"
       },
       "seo": {
         "title": "Search Engine Optimization",
         "description": "Improve your organic search rankings and drive consistent, high-quality traffic to your website with our proven SEO strategies and techniques.",
-        "bullets": ["Technical SEO audit & fixes", "Keyword research & strategy", "On-page & off-page optimization", "Local SEO & Google Business Profile"],
+        "bullets": [
+          "Technical SEO audit & fixes",
+          "Keyword research & strategy",
+          "On-page & off-page optimization",
+          "Local SEO & Google Business Profile"
+        ],
         "cta": "Boost Your Rankings"
       }
     }
@@ -115,36 +146,92 @@
     "storyP1": "MaxUp was founded with a simple mission: help businesses thrive in the digital age. What started as a small team of passionate developers and marketers has grown into a full-service digital agency serving clients across the Middle East and beyond.",
     "storyP2": "We believe that great digital experiences are built at the intersection of creativity and data. Every project we take on is driven by strategy, executed with precision, and measured by real results. Our team brings together diverse expertise in development, design, marketing, and content creation to deliver comprehensive solutions.",
     "stats": {
-      "projects": { "number": "200+", "label": "Projects Completed" },
-      "years": { "number": "5+", "label": "Years of Experience" },
-      "clients": { "number": "50+", "label": "Happy Clients" },
-      "satisfaction": { "number": "98%", "label": "Client Satisfaction" }
+      "projects": {
+        "number": "200+",
+        "label": "Projects Completed"
+      },
+      "years": {
+        "number": "5+",
+        "label": "Years of Experience"
+      },
+      "clients": {
+        "number": "50+",
+        "label": "Happy Clients"
+      },
+      "satisfaction": {
+        "number": "98%",
+        "label": "Client Satisfaction"
+      }
     },
     "team": {
       "title": "Meet Our Team",
       "members": [
-        { "name": "Ahmad Khalil", "role": "CEO & Founder", "bio": "Visionary leader with 10+ years in digital strategy and business development." },
-        { "name": "Sara Mansour", "role": "Creative Director", "bio": "Award-winning designer passionate about creating memorable brand experiences." },
-        { "name": "Omar Haddad", "role": "Head of Development", "bio": "Full-stack expert who turns complex ideas into elegant, scalable solutions." },
-        { "name": "Lina Farah", "role": "Marketing Lead", "bio": "Data-driven marketer specializing in growth strategies and campaign optimization." }
+        {
+          "name": "Ahmad Khalil",
+          "role": "CEO & Founder",
+          "bio": "Visionary leader with 10+ years in digital strategy and business development."
+        },
+        {
+          "name": "Sara Mansour",
+          "role": "Creative Director",
+          "bio": "Award-winning designer passionate about creating memorable brand experiences."
+        },
+        {
+          "name": "Omar Haddad",
+          "role": "Head of Development",
+          "bio": "Full-stack expert who turns complex ideas into elegant, scalable solutions."
+        },
+        {
+          "name": "Lina Farah",
+          "role": "Marketing Lead",
+          "bio": "Data-driven marketer specializing in growth strategies and campaign optimization."
+        }
       ]
     },
     "values": {
       "title": "Our Values",
       "items": [
-        { "title": "Quality", "description": "We never compromise on quality. Every pixel, every line of code, every campaign is crafted to the highest standards." },
-        { "title": "Transparency", "description": "Open communication and honest reporting. You always know exactly where your project stands and how your budget is spent." },
-        { "title": "Innovation", "description": "We stay ahead of digital trends and continuously explore new technologies and strategies to give you a competitive edge." },
-        { "title": "Results", "description": "Beautiful work is great, but results matter most. We measure success by the tangible impact we create for your business." }
+        {
+          "title": "Quality",
+          "description": "We never compromise on quality. Every pixel, every line of code, every campaign is crafted to the highest standards."
+        },
+        {
+          "title": "Transparency",
+          "description": "Open communication and honest reporting. You always know exactly where your project stands and how your budget is spent."
+        },
+        {
+          "title": "Innovation",
+          "description": "We stay ahead of digital trends and continuously explore new technologies and strategies to give you a competitive edge."
+        },
+        {
+          "title": "Results",
+          "description": "Beautiful work is great, but results matter most. We measure success by the tangible impact we create for your business."
+        }
       ]
     },
     "timeline": {
       "title": "Our Journey",
       "milestones": [
-        { "year": "2019", "title": "The Beginning", "description": "MaxUp was founded with a team of 3 passionate digital enthusiasts." },
-        { "year": "2020", "title": "First Major Client", "description": "Landed our first enterprise client and expanded to a team of 10." },
-        { "year": "2022", "title": "Regional Expansion", "description": "Opened operations across the Middle East, serving clients in 5 countries." },
-        { "year": "2024", "title": "200+ Projects", "description": "Celebrated our 200th completed project with a 98% client satisfaction rate." }
+        {
+          "year": "2019",
+          "title": "The Beginning",
+          "description": "MaxUp was founded with a team of 3 passionate digital enthusiasts."
+        },
+        {
+          "year": "2020",
+          "title": "First Major Client",
+          "description": "Landed our first enterprise client and expanded to a team of 10."
+        },
+        {
+          "year": "2022",
+          "title": "Regional Expansion",
+          "description": "Opened operations across the Middle East, serving clients in 5 countries."
+        },
+        {
+          "year": "2024",
+          "title": "200+ Projects",
+          "description": "Celebrated our 200th completed project with a 98% client satisfaction rate."
+        }
       ]
     }
   },
@@ -251,13 +338,78 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "items": [
-        { "question": "How long does a website project take?", "answer": "Typically 2-6 weeks depending on complexity. A simple one-page site takes about 2 weeks, while a full custom web application can take 4-6 weeks or more." },
-        { "question": "Do you offer payment plans?", "answer": "Yes! We offer flexible payment plans. Typically 50% upfront and 50% upon completion, but we can discuss arrangements that work for your budget." },
-        { "question": "Can I upgrade my plan later?", "answer": "Absolutely. You can upgrade your plan at any time. We'll credit what you've already paid toward the new plan and adjust the scope accordingly." },
-        { "question": "What's included in support?", "answer": "Our support includes bug fixes, minor content updates, security patches, and technical assistance. Response time is within 24 hours for standard plans and 4 hours for premium." },
-        { "question": "Do you work with businesses outside Israel?", "answer": "Yes, we serve clients across the Middle East and internationally. We work remotely and can accommodate different time zones and languages." },
-        { "question": "What if I'm not satisfied with the results?", "answer": "We work closely with you throughout the project with regular check-ins and revisions. We offer up to 3 rounds of revisions to ensure you're completely happy with the final result." }
+        {
+          "question": "How long does a website project take?",
+          "answer": "Typically 2-6 weeks depending on complexity. A simple one-page site takes about 2 weeks, while a full custom web application can take 4-6 weeks or more."
+        },
+        {
+          "question": "Do you offer payment plans?",
+          "answer": "Yes! We offer flexible payment plans. Typically 50% upfront and 50% upon completion, but we can discuss arrangements that work for your budget."
+        },
+        {
+          "question": "Can I upgrade my plan later?",
+          "answer": "Absolutely. You can upgrade your plan at any time. We'll credit what you've already paid toward the new plan and adjust the scope accordingly."
+        },
+        {
+          "question": "What's included in support?",
+          "answer": "Our support includes bug fixes, minor content updates, security patches, and technical assistance. Response time is within 24 hours for standard plans and 4 hours for premium."
+        },
+        {
+          "question": "Do you work with businesses outside Israel?",
+          "answer": "Yes, we serve clients across the Middle East and internationally. We work remotely and can accommodate different time zones and languages."
+        },
+        {
+          "question": "What if I'm not satisfied with the results?",
+          "answer": "We work closely with you throughout the project with regular check-ins and revisions. We offer up to 3 rounds of revisions to ensure you're completely happy with the final result."
+        }
       ]
     }
+  },
+  "portfolioPage": {
+    "title": "Our Portfolio",
+    "subtitle": "Explore our latest projects and the results we've achieved for our clients",
+    "filters": {
+      "all": "All",
+      "websites": "Websites",
+      "marketing": "Marketing",
+      "branding": "Branding",
+      "content": "Content",
+      "apps": "Apps"
+    },
+    "loadMore": "Load More Projects"
+  },
+  "servicePage": {
+    "overview": "Overview",
+    "keyFeatures": "Key Features",
+    "processTitle": "Our Process",
+    "processSubtitle": "A proven approach that delivers results every time",
+    "whatYoullGet": "What You'll Get",
+    "relatedProjects": "Related Projects",
+    "projectPlaceholder": "Coming Soon",
+    "getQuote": "Get a Quote"
+  },
+  "caseStudy": {
+    "challenge": "The Challenge",
+    "solution": "Our Solution",
+    "outcome": "The Outcome",
+    "nextProject": "Next Project",
+    "client": "Client",
+    "industry": "Industry",
+    "services": "Services",
+    "timeline": "Timeline",
+    "results": "Results"
+  },
+  "blogPost": {
+    "relatedArticles": "Related Articles",
+    "shareTitle": "Share This Article",
+    "by": "By",
+    "publishedOn": "Published on"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Page Not Found",
+    "subtitle": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to Home",
+    "contactUs": "Contact Us"
   }
 }

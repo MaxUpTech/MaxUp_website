@@ -3,8 +3,18 @@
 import { useTranslations } from 'next-intl';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Link } from '@/i18n/routing';
 
 const serviceKeys = ['webDev', 'marketing', 'content', 'branding', 'social', 'seo'] as const;
+
+const serviceSlugMap: Record<string, string> = {
+  webDev: 'web-design',
+  marketing: 'marketing',
+  content: 'content',
+  branding: 'branding',
+  social: 'social-media',
+  seo: 'seo',
+};
 
 export default function ServicesPage() {
   const t = useTranslations('servicesPage');
@@ -46,9 +56,12 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <button className="bg-ruby text-white rounded-lg px-8 py-3 font-medium hover:bg-ruby/90 transition-colors">
+                  <Link
+                    href={`/services/${serviceSlugMap[key]}`}
+                    className="inline-block bg-ruby text-white rounded-lg px-8 py-3 font-medium hover:bg-ruby/90 transition-colors"
+                  >
                     {t(`services.${key}.cta`)}
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Image Placeholder */}

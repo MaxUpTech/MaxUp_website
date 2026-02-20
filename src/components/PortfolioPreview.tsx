@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import AnimateOnScroll from './AnimateOnScroll';
 
 type Category = 'all' | 'websites' | 'marketing' | 'branding' | 'content';
@@ -72,6 +73,15 @@ export default function PortfolioPreview() {
               </div>
             </AnimateOnScroll>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            href="/portfolio"
+            className="inline-block border-2 border-midnight text-midnight px-8 py-3 rounded-full font-medium hover:bg-midnight hover:text-white transition-colors"
+          >
+            {t('viewAll')}
+          </Link>
         </div>
       </div>
     </section>

@@ -12,3 +12,10 @@
   --font-cairo: var(--font-cairo);
   --font-inter: var(--font-inter);
 }
+
+.hover-lift {
+  @apply transition-all duration-300 ease-out;
+}
+.hover-lift:hover {
+  @apply -translate-y-1 shadow-lg;
+}

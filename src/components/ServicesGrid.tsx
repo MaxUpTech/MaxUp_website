@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import AnimateOnScroll from './AnimateOnScroll';
 
 const services = [
   {
@@ -65,27 +66,30 @@ export default function ServicesGrid() {
     <section id="services" className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-midnight mb-4">{t('title')}</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
-        </div>
+        <AnimateOnScroll>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-midnight mb-4">{t('title')}</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+          </div>
+        </AnimateOnScroll>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ key, icon }) => (
-            <div
-              key={key}
-              className="border border-gray-200 rounded-2xl p-9 hover:border-ruby hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
-            >
-              <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-midnight mb-6">
-                {icon}
+          {services.map(({ key, icon }, index) => (
+            <AnimateOnScroll key={key} delay={index * 0.1}>
+              <div
+                className="border border-gray-200 rounded-2xl p-9 hover:border-ruby hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+              >
+                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-midnight mb-6">
+                  {icon}
+                </div>
+                <h3 className="text-lg font-bold text-midnight mb-3">{t(key)}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{t(`${key}Desc`)}</p>
+                <Link href="/#services" className="text-ruby text-sm font-medium hover:underline">
+                  {t('learnMore')} ←
+                </Link>
               </div>
-              <h3 className="text-lg font-bold text-midnight mb-3">{t(key)}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">{t(`${key}Desc`)}</p>
-              <Link href="/#services" className="text-ruby text-sm font-medium hover:underline">
-                {t('learnMore')} ←
-              </Link>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

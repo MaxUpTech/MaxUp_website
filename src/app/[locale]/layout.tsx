@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { isRTL, type Locale } from '@/i18n/config';
+import SmoothScroll from '@/components/SmoothScroll';
 import '../globals.css';
 
 const cairo = Cairo({ subsets: ['arabic', 'latin'], variable: '--font-cairo', display: 'swap' });
@@ -31,7 +32,9 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir} className={`${cairo.variable} ${inter.variable}`}>
       <body className="font-cairo antialiased bg-white text-midnight">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
         </NextIntlClientProvider>
       </body>
     </html>

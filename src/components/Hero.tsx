@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import AnimateOnScroll from './AnimateOnScroll';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function Hero() {
   const t = useTranslations('hero');
@@ -10,7 +12,7 @@ export default function Hero() {
     <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center gap-12">
         {/* Content */}
-        <div className="flex-1 space-y-8">
+        <AnimateOnScroll direction="up" className="flex-1 space-y-8">
           <span className="inline-block bg-gray-100 text-gray-600 text-sm px-4 py-2 rounded-full">
             {t('badge')}
           </span>
@@ -39,24 +41,24 @@ export default function Hero() {
           {/* Stats */}
           <div className="flex gap-8 pt-8 border-t border-gray-200">
             <div>
-              <div className="text-2xl font-bold text-midnight">200+</div>
+              <div className="text-2xl font-bold text-midnight"><AnimatedCounter target={200} suffix="+" /></div>
               <div className="text-gray-400 text-sm">{t('statProjects')}</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-midnight">5+</div>
+              <div className="text-2xl font-bold text-midnight"><AnimatedCounter target={5} suffix="+" /></div>
               <div className="text-gray-400 text-sm">{t('statYears')}</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-midnight">98%</div>
+              <div className="text-2xl font-bold text-midnight"><AnimatedCounter target={98} suffix="%" /></div>
               <div className="text-gray-400 text-sm">{t('statSatisfaction')}</div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* 3D Placeholder */}
-        <div className="flex-1 hidden md:flex items-center justify-center bg-gray-100 rounded-2xl min-h-[440px] w-full">
+        <AnimateOnScroll direction="left" delay={0.2} className="flex-1 hidden md:flex items-center justify-center bg-gray-100 rounded-2xl min-h-[440px] w-full">
           <span className="text-gray-400 text-lg">Spline 3D Scene</span>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

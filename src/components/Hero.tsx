@@ -2,8 +2,18 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import dynamic from 'next/dynamic';
 import AnimateOnScroll from './AnimateOnScroll';
 import AnimatedCounter from './AnimatedCounter';
+import HeroFallback from './HeroFallback';
+
+const SplineScene = dynamic(() => import('./SplineScene'), {
+  ssr: false,
+  loading: () => <HeroFallback />,
+});
+
+// TODO: Replace with your actual Spline scene URL
+const SPLINE_SCENE_URL = 'https://prod.spline.design/PLACEHOLDER/scene.splinecode';
 
 export default function Hero() {
   const t = useTranslations('hero');
@@ -55,9 +65,21 @@ export default function Hero() {
           </div>
         </AnimateOnScroll>
 
-        {/* 3D Placeholder */}
-        <AnimateOnScroll direction="left" delay={0.2} className="flex-1 hidden md:flex items-center justify-center bg-gray-100 rounded-2xl min-h-[440px] w-full">
-          <span className="text-gray-400 text-lg">Spline 3D Scene</span>
+        {/* 3D Visual — HeroFallback on mobile, Spline on desktop */}
+        <AnimateOnScroll
+          direction="left"
+          delay={0.2}
+          className="flex-1 hidden md:flex items-center justify-center rounded-2xl min-h-[440px] w-full"
+          style={{ willChange: 'transform' }}
+        >
+          {/* Mobile / medium: lightweight fallback */}
+          <div className="block lg:hidden w-full h-full">
+            <HeroFallback />
+          </div>
+          {/* Desktop: Spline 3D scene (lazy loaded) */}
+          <div className="hidden lg:block w-full h-full">
+            <SplineScene sceneUrl={SPLINE_SCENE_URL} />
+          </div>
         </AnimateOnScroll>
       </div>
     </section>

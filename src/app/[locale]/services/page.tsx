@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from '@/i18n/routing';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 
 const serviceKeys = ['webDev', 'marketing', 'content', 'branding', 'social', 'seo'] as const;
 
@@ -27,8 +28,10 @@ export default function ServicesPage() {
         {/* Hero */}
         <section className="bg-off-white py-20 text-center">
           <div className="mx-auto max-w-4xl px-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('heroTitle')}</h1>
-            <p className="text-gray-600 text-lg">{t('heroSubtitle')}</p>
+            <AnimateOnScroll variant="fadeUp">
+              <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('heroTitle')}</h1>
+              <p className="text-gray-600 text-lg">{t('heroSubtitle')}</p>
+            </AnimateOnScroll>
           </div>
         </section>
 
@@ -41,7 +44,7 @@ export default function ServicesPage() {
             <section key={key} className={i % 2 === 0 ? 'py-16' : 'py-16 bg-off-white'}>
               <div className={`mx-auto max-w-6xl px-6 flex flex-col lg:flex-row gap-16 items-center ${isEven ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Content */}
-                <div className="flex-1">
+                <AnimateOnScroll variant={isEven ? 'fadeRight' : 'fadeLeft'} className="flex-1">
                   <h2 className="text-3xl font-bold text-midnight mb-4">
                     {t(`services.${key}.title`)}
                   </h2>
@@ -62,14 +65,14 @@ export default function ServicesPage() {
                   >
                     {t(`services.${key}.cta`)}
                   </Link>
-                </div>
+                </AnimateOnScroll>
 
                 {/* Image Placeholder */}
-                <div className="flex-1 w-full">
+                <AnimateOnScroll variant={isEven ? 'fadeLeft' : 'fadeRight'} delay={0.15} className="flex-1 w-full">
                   <div className="bg-gray-100 rounded-2xl h-[300px] flex items-center justify-center text-gray-400">
                     {t(`services.${key}.title`)}
                   </div>
-                </div>
+                </AnimateOnScroll>
               </div>
             </section>
           );

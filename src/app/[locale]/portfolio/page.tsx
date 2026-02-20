@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FilterPills from '@/components/FilterPills';
 import ProjectCard from '@/components/ProjectCard';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import { portfolioProjects } from '@/data/portfolio';
 import type { Locale } from '@/i18n/config';
 
@@ -39,35 +41,49 @@ export default function PortfolioPage() {
         {/* Hero */}
         <section className="bg-off-white py-20 px-6">
           <div className="max-w-6xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('title')}</h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+            <AnimateOnScroll variant="fadeUp">
+              <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('title')}</h1>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+            </AnimateOnScroll>
           </div>
         </section>
 
         {/* Filters + Grid */}
         <section className="py-16 px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-center mb-12">
-              <FilterPills
-                filters={filters}
-                activeFilter={activeFilter}
-                onFilterChange={(key) => { setActiveFilter(key); setVisibleCount(INITIAL_COUNT); }}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {visible.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={{
-                    slug: project.slug,
-                    title: project.title[locale],
-                    category: project.category,
-                    heroImage: project.heroImage,
-                  }}
+            <AnimateOnScroll variant="fadeUp">
+              <div className="flex justify-center mb-12">
+                <FilterPills
+                  filters={filters}
+                  activeFilter={activeFilter}
+                  onFilterChange={(key) => { setActiveFilter(key); setVisibleCount(INITIAL_COUNT); }}
                 />
-              ))}
-            </div>
+              </div>
+            </AnimateOnScroll>
+
+            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence mode="popLayout">
+                {visible.map((project, i) => (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4, delay: i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    <ProjectCard
+                      project={{
+                        slug: project.slug,
+                        title: project.title[locale],
+                        category: project.category,
+                        heroImage: project.heroImage,
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
 
             {visible.length < filtered.length && (
               <div className="text-center mt-12">

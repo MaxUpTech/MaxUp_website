@@ -1,17 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import AnimateOnScroll from './AnimateOnScroll';
+import { portfolioProjects as staticProjects } from '@/data/portfolio';
+import { getAll as getAllPortfolio } from '@/lib/services/portfolio';
+import type { PortfolioProject } from '@/lib/types';
+import type { Locale } from '@/i18n/config';
 
 type Category = 'all' | 'websites' | 'marketing' | 'branding' | 'content';
-
-const projects = [
-  { name: 'مطعم البيت العربي', tags: ['websites', 'branding'] as Category[], tagLabels: ['موقع', 'هوية بصرية'] },
-  { name: 'عيادة د. سامي', tags: ['websites', 'marketing'] as Category[], tagLabels: ['موقع', 'SEO'] },
-  { name: 'متجر زهور الربيع', tags: ['marketing', 'content'] as Category[], tagLabels: ['تسويق', 'محتوى'] },
-];
 
 const filterKeys: Category[] = ['all', 'websites', 'marketing', 'branding', 'content'];
 const filterTranslationKeys: Record<Category, string> = {
@@ -24,9 +22,27 @@ const filterTranslationKeys: Record<Category, string> = {
 
 export default function PortfolioPreview() {
   const t = useTranslations('portfolio');
+  const locale = useLocale() as Locale;
   const [active, setActive] = useState<Category>('all');
+  const [projects, setProjects] = useState<PortfolioProject[]>(staticProjects);
 
-  const filtered = active === 'all' ? projects : projects.filter(p => p.tags.includes(active));
+  useEffect(() => {
+    let cancelled = false;
+    getAllPortfolio({ isFeatured: true })
+      .then((fbProjects) => {
+        if (!cancelled && fbProjects.length > 0) {
+          setProjects(fbProjects);
+        }
+      })
+      .catch((err) => {
+        console.error('Firebase portfolio preview fetch failed, using static data:', err);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const displayProjects = active === 'all'
+    ? projects.slice(0, 6)
+    : projects.filter(p => p.category === active).slice(0, 6);
 
   return (
     <section className="bg-off-white py-20 px-6">
@@ -54,23 +70,21 @@ export default function PortfolioPreview() {
         </AnimateOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project, i) => (
-            <AnimateOnScroll key={i} delay={i * 0.1}>
-              <div
-                className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="bg-gray-100 h-[200px]" />
-                <div className="p-5">
-                  <h4 className="font-bold text-midnight text-lg mb-3">{project.name}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tagLabels.map((label, j) => (
-                      <span key={j} className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">
-                        {label}
+          {displayProjects.map((project, i) => (
+            <AnimateOnScroll key={project.id} delay={i * 0.1}>
+              <Link href={`/portfolio/${project.slug}`}>
+                <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                  <div className="bg-gray-100 h-[200px]" />
+                  <div className="p-5">
+                    <h4 className="font-bold text-midnight text-lg mb-3">{project.title[locale]}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">
+                        {project.category}
                       </span>
-                    ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </AnimateOnScroll>
           ))}
         </div>

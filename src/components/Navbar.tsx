@@ -32,9 +32,10 @@ export default function Navbar() {
             <Link
               key={key}
               href={key === 'services' ? '/#services' : key === 'contact' ? '/contact' : `/${key}`}
-              className="text-gray-600 hover:text-midnight transition-colors text-sm font-medium"
+              className="relative text-gray-600 hover:text-midnight transition-colors text-sm font-medium group"
             >
               {t(key)}
+              <span className="absolute -bottom-1 left-1/2 h-0.5 w-0 bg-ruby transition-all duration-300 ease-out group-hover:w-full group-hover:left-0" />
             </Link>
           ))}
         </nav>

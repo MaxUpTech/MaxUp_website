@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogPostCard from '@/components/BlogPostCard';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import { blogPosts } from '@/data/blog-posts';
 
 type Locale = 'ar' | 'en' | 'he';
@@ -42,32 +44,36 @@ export default function BlogPage() {
         {/* Hero */}
         <section className="bg-off-white py-20 text-center">
           <div className="mx-auto max-w-4xl px-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('title')}</h1>
-            <p className="text-gray-600 text-lg">{t('subtitle')}</p>
+            <AnimateOnScroll variant="fadeUp">
+              <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{t('title')}</h1>
+              <p className="text-gray-600 text-lg">{t('subtitle')}</p>
+            </AnimateOnScroll>
           </div>
         </section>
 
         <section className="py-16 px-6">
           {/* Filter pills */}
-          <div className="flex gap-3 justify-center mb-12 flex-wrap">
-            {filterKeys.map((key) => (
-              <button
-                key={key}
-                onClick={() => { setActiveFilter(key); setActivePage(1); }}
-                className={`px-6 py-2 rounded-lg border font-semibold cursor-pointer transition-colors ${
-                  activeFilter === key
-                    ? 'bg-midnight text-white border-midnight'
-                    : 'border-gray-200 text-gray-600 hover:border-gray-400'
-                }`}
-              >
-                {t(`filters.${key}`)}
-              </button>
-            ))}
-          </div>
+          <AnimateOnScroll variant="fadeUp">
+            <div className="flex gap-3 justify-center mb-12 flex-wrap">
+              {filterKeys.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => { setActiveFilter(key); setActivePage(1); }}
+                  className={`px-6 py-2 rounded-lg border font-semibold cursor-pointer transition-colors ${
+                    activeFilter === key
+                      ? 'bg-midnight text-white border-midnight'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-400'
+                  }`}
+                >
+                  {t(`filters.${key}`)}
+                </button>
+              ))}
+            </div>
+          </AnimateOnScroll>
 
           {/* Featured post */}
           {featured && activeFilter === 'all' && (
-            <div className="max-w-6xl mx-auto mb-16">
+            <AnimateOnScroll variant="fadeUp" className="max-w-6xl mx-auto mb-16">
               <a href={`/${locale}/blog/${featured.slug}`} className="block">
                 <div className="flex flex-col md:flex-row gap-8 bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition">
                   <div className="md:w-2/5 w-full bg-gray-100 min-h-[300px]" />
@@ -84,25 +90,34 @@ export default function BlogPage() {
                   </div>
                 </div>
               </a>
-            </div>
+            </AnimateOnScroll>
           )}
 
           {/* Blog grid */}
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((post) => (
-              <BlogPostCard
-                key={post.id}
-                post={{
-                  slug: post.slug,
-                  title: post.title[locale],
-                  excerpt: post.excerpt[locale],
-                  category: categoryLabels[post.category]?.[locale] ?? post.category,
-                  date: formattedDate(post.publishDate),
-                  readTime: post.readTime,
-                  featuredImage: post.featuredImage,
-                }}
-              />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {filtered.map((post, i) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <BlogPostCard
+                    post={{
+                      slug: post.slug,
+                      title: post.title[locale],
+                      excerpt: post.excerpt[locale],
+                      category: categoryLabels[post.category]?.[locale] ?? post.category,
+                      date: formattedDate(post.publishDate),
+                      readTime: post.readTime,
+                      featuredImage: post.featuredImage,
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           {/* Pagination */}

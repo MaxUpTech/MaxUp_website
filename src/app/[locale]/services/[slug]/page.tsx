@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import CTABanner from '@/components/CTABanner';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import { getServiceBySlug } from '@/data/services';
 
 type Locale = 'ar' | 'en' | 'he';
@@ -48,24 +49,24 @@ export default function ServiceDetailPage() {
                 { label: title },
               ]}
             />
-            <div className="mt-6 max-w-3xl">
+            <AnimateOnScroll variant="fadeUp" className="mt-6 max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold text-midnight mb-4">{title}</h1>
               <p className="text-gray-600 text-lg leading-relaxed">{shortDescription}</p>
-            </div>
+            </AnimateOnScroll>
           </div>
         </section>
 
         {/* Overview */}
         <section className="py-16">
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="text-2xl font-bold text-midnight mb-8">{t('overview')}</h2>
+            <AnimateOnScroll variant="fadeUp">
+              <h2 className="text-2xl font-bold text-midnight mb-8">{t('overview')}</h2>
+            </AnimateOnScroll>
             <div className="flex flex-col lg:flex-row gap-12">
-              {/* Left 60% - Description */}
-              <div className="lg:w-[60%]">
+              <AnimateOnScroll variant="fadeUp" className="lg:w-[60%]">
                 <p className="text-gray-600 leading-relaxed text-lg">{fullDescription}</p>
-              </div>
-              {/* Right 40% - Features Card */}
-              <div className="lg:w-[40%]">
+              </AnimateOnScroll>
+              <AnimateOnScroll variant="fadeUp" delay={0.15} className="lg:w-[40%]">
                 <div className="bg-off-white rounded-2xl p-8">
                   <h3 className="font-bold text-midnight mb-5 text-lg">{t('keyFeatures')}</h3>
                   <ul className="space-y-4">
@@ -77,7 +78,7 @@ export default function ServiceDetailPage() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
@@ -85,23 +86,33 @@ export default function ServiceDetailPage() {
         {/* Process */}
         <section className="py-16 bg-off-white">
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-4 text-center">
-              {t('processTitle')}
-            </h2>
-            <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-              {t('processSubtitle')}
-            </p>
-            <ProcessTimeline steps={processSteps} />
+            <AnimateOnScroll variant="fadeUp">
+              <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-4 text-center">
+                {t('processTitle')}
+              </h2>
+              <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                {t('processSubtitle')}
+              </p>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" staggerChildren={0.12}>
+              {processSteps.map((step, i) => (
+                <div key={i}>
+                  <ProcessTimeline steps={[step]} />
+                </div>
+              ))}
+            </AnimateOnScroll>
           </div>
         </section>
 
         {/* Deliverables */}
         <section className="py-16">
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
-              {t('whatYoullGet')}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <AnimateOnScroll variant="fadeUp">
+              <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
+                {t('whatYoullGet')}
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="scaleUp" staggerChildren={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {service.deliverables.map((item, i) => (
                 <div
                   key={i}
@@ -112,17 +123,19 @@ export default function ServiceDetailPage() {
                   <p className="text-gray-600 text-sm leading-relaxed">{item.description[locale]}</p>
                 </div>
               ))}
-            </div>
+            </AnimateOnScroll>
           </div>
         </section>
 
-        {/* Related Projects (placeholder) */}
+        {/* Related Projects */}
         <section className="py-16 bg-off-white">
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
-              {t('relatedProjects')}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <AnimateOnScroll variant="fadeUp">
+              <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
+                {t('relatedProjects')}
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fadeUp" staggerChildren={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[1, 2, 3].map((n) => (
                 <div
                   key={n}
@@ -131,14 +144,14 @@ export default function ServiceDetailPage() {
                   {t('projectPlaceholder')}
                 </div>
               ))}
-            </div>
+            </AnimateOnScroll>
           </div>
         </section>
 
         {/* CTA */}
-        <div className="pt-16">
+        <AnimateOnScroll variant="fadeUp" className="pt-16">
           <CTABanner />
-        </div>
+        </AnimateOnScroll>
       </main>
       <Footer />
     </>

@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import RichTextRenderer from '@/components/RichTextRenderer';
 import ShareButtons from '@/components/ShareButtons';
 import BlogPostCard from '@/components/BlogPostCard';
+import { BlogHeader, BlogBody, BlogSection } from './BlogPostContent';
 import { getBlogPost, getRelatedPosts, blogPosts } from '@/data/blog-posts';
 
 type Locale = 'ar' | 'en' | 'he';
@@ -29,7 +30,6 @@ export default async function BlogPostPage({ params }: PageProps) {
   const navT = await getTranslations('nav');
 
   const related = getRelatedPosts(slug, post.category, 3);
-  // If not enough same-category posts, fill with others
   const relatedPosts =
     related.length >= 3
       ? related
@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="mx-auto max-w-4xl px-6">
             <Breadcrumb
               items={[
-                { label: navT('services') === navT('services') ? (locale === 'ar' ? 'الرئيسية' : locale === 'he' ? 'דף הבית' : 'Home') : 'Home', href: '/' },
+                { label: locale === 'ar' ? 'الرئيسية' : locale === 'he' ? 'דף הבית' : 'Home', href: '/' },
                 { label: navT('blog'), href: '/blog' },
                 { label: post.title[locale] },
               ]}
@@ -73,64 +73,71 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Article Header */}
         <article className="mx-auto max-w-4xl px-6 py-12">
-          <div className="mb-8">
-            <span className="inline-block bg-ruby text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
-              {categoryLabel}
-            </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight leading-tight mb-6">
-              {post.title[locale]}
-            </h1>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
-              <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0" />
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-medium text-midnight">{post.author.name}</span>
-                <span>·</span>
-                <span>{formattedDate}</span>
-                <span>·</span>
-                <span>{post.readTime} {locale === 'ar' ? 'دقائق للقراءة' : locale === 'he' ? 'דקות קריאה' : 'min read'}</span>
+          <BlogHeader>
+            <div className="mb-8">
+              <span className="inline-block bg-ruby text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
+                {categoryLabel}
+              </span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight leading-tight mb-6">
+                {post.title[locale]}
+              </h1>
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0" />
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-medium text-midnight">{post.author.name}</span>
+                  <span>·</span>
+                  <span>{formattedDate}</span>
+                  <span>·</span>
+                  <span>{post.readTime} {locale === 'ar' ? 'دقائق للقراءة' : locale === 'he' ? 'דקות קריאה' : 'min read'}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Featured Image */}
-          <div className="w-full h-[300px] md:h-[400px] bg-gray-100 rounded-2xl mb-12" />
+            {/* Featured Image */}
+            <div className="w-full h-[300px] md:h-[400px] bg-gray-100 rounded-2xl mb-12" />
+          </BlogHeader>
 
           {/* Article Body */}
-          <div className="mb-12">
-            <RichTextRenderer content={post.content[locale]} />
-          </div>
+          <BlogBody>
+            <div className="mb-12">
+              <RichTextRenderer content={post.content[locale]} />
+            </div>
 
-          {/* Share */}
-          <div className="border-t border-gray-200 pt-8 mb-16">
-            <h3 className="text-lg font-semibold text-midnight mb-4">{t('shareTitle')}</h3>
-            <ShareButtons url={`https://maxup.media/${locale}/blog/${post.slug}`} title={post.title[locale]} />
-          </div>
+            {/* Share */}
+            <div className="border-t border-gray-200 pt-8 mb-16">
+              <h3 className="text-lg font-semibold text-midnight mb-4">{t('shareTitle')}</h3>
+              <ShareButtons url={`https://maxup.media/${locale}/blog/${post.slug}`} title={post.title[locale]} />
+            </div>
+          </BlogBody>
         </article>
 
         {/* Related Articles */}
         {relatedPosts.length > 0 && (
           <section className="bg-off-white py-16">
             <div className="mx-auto max-w-6xl px-6">
-              <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
-                {t('relatedArticles')}
-              </h2>
+              <BlogSection>
+                <h2 className="text-2xl md:text-3xl font-bold text-midnight mb-10 text-center">
+                  {t('relatedArticles')}
+                </h2>
+              </BlogSection>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedPosts.map((rp) => (
-                  <BlogPostCard
-                    key={rp.id}
-                    post={{
-                      slug: rp.slug,
-                      title: rp.title[locale],
-                      excerpt: rp.excerpt[locale],
-                      category: categoryLabels[rp.category]?.[locale] ?? rp.category,
-                      date: new Date(rp.publishDate).toLocaleDateString(
-                        locale === 'ar' ? 'ar-EG' : locale === 'he' ? 'he-IL' : 'en-US',
-                        { year: 'numeric', month: 'long', day: 'numeric' }
-                      ),
-                      readTime: rp.readTime,
-                      featuredImage: rp.featuredImage,
-                    }}
-                  />
+                  <BlogSection key={rp.id}>
+                    <BlogPostCard
+                      post={{
+                        slug: rp.slug,
+                        title: rp.title[locale],
+                        excerpt: rp.excerpt[locale],
+                        category: categoryLabels[rp.category]?.[locale] ?? rp.category,
+                        date: new Date(rp.publishDate).toLocaleDateString(
+                          locale === 'ar' ? 'ar-EG' : locale === 'he' ? 'he-IL' : 'en-US',
+                          { year: 'numeric', month: 'long', day: 'numeric' }
+                        ),
+                        readTime: rp.readTime,
+                        featuredImage: rp.featuredImage,
+                      }}
+                    />
+                  </BlogSection>
                 ))}
               </div>
             </div>
